@@ -1,0 +1,12 @@
+<template name="postsList">
+
+    <div class="jumbotron">
+        <h1>The Ideas</h1>
+    </div>
+
+    <div class="posts">
+        {{#each posts}}
+            {{> postItem}}
+        {{/each}}
+    </div>
+</template>
