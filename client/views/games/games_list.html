@@ -1,0 +1,28 @@
+<template name="gamesList">
+
+    <div class="jumbotron">
+        <h1>The Games</h1>
+    </div>
+   
+    <h1>Active Games</h1>
+    <div class="activeGames">
+        {{#each activeGames}}
+            {{> gameItem}}
+        {{/each}}
+    </div>
+
+    <h1>New Games</h1>
+    <div class="newGames">
+        {{#each newGames}}
+            {{> gameItem}}
+        {{/each}}
+    </div>
+
+    <h1>Past Games</h1>
+    <div class="pastGames">
+        {{#each pastGames}}
+            {{> gameItem}}
+        {{/each}}
+    </div>
+
+</template>

@@ -1,0 +1,71 @@
+<template name="gameSubmit">
+
+    <div class="container-fluid">
+    <form class="main">
+        <div class="jumbotron">
+            <h1>Start a New Game</h1>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="title">Title</label>
+            <div class="controls">
+                <input name="title" type="text" value="" placeholder="Name your game"/>
+            </div>
+        </div>
+
+       <div class="control-group">
+            <label class="control-label" for="startDate">Start Date</label>
+            <div class="controls">
+                <input name="startDate" type="date" value="2014-03-17" placeholder="Select start date"/>
+            </div>
+        </div>
+       
+        <div class="control-group">
+            <label class="control-label" for="title">Days to submit</label>
+            <div class="controls">
+                <input name="daysToSubmit" type="number" value="5" placeholder="5"/>
+            </div>
+        </div>
+
+       <div class="control-group">
+            <label class="control-label" for="title">Days to vote</label>
+            <div class="controls">
+                <input name="daysToVote" type="number" value="2" placeholder="2"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="title">Innings</label>
+            <div class="controls">
+                <input name="numberInnings" type="number" value="7" placeholder="7"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="title">Strikes</label>
+            <div class="controls">
+                <input name="strikes" type="number" value="3" placeholder="3"/>
+            </div>
+        </div>
+
+<!--	<div class="control-group">
+            <label class="control-label" for="firstTheme">First Theme</label>
+            <div class="controls">
+                <textarea name="firstTheme" type="text" value=""/>
+            </div>
+        </div>
+-->
+        <div class="control-group">
+            <label class="control-label" for="message">Message</label>
+            <div class="controls">
+                <textarea name="message" type="text" value=""/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <input type="submit" value="Submit" class="btn btn-primary"/>
+            </div>
+        </div>
+    </form>
+    </div>
+</template>

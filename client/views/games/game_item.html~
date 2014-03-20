@@ -1,0 +1,18 @@
+<template name="gameItem">
+    <div class="container-fluid">
+        <div class="well">
+            <h2><a href="{{pathFor 'gamePage'}}">{{title}}</a></h2>
+            <p>
+                <a href="{{pathFor 'gamePage'}}">Days remaining: {{</a>
+            </p>
+            <div class="pull-right">
+                <a href="{{pathFor 'gamePage'}}" class="btn btn-primary glyphicon glyphicon-tree-deciduous">Discuss</a>
+                <button type="button" class="upvote btn btn-success glyphicon glyphicon-ok"> Vote</button>
+            </div>
+            <p>Message: {{message}}</p>
+
+
+        </div>
+    </div>
+</template>
+

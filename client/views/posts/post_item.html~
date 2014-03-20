@@ -1,0 +1,20 @@
+<template name="postItem">
+    <div class="container-fluid">
+        <div class="well">
+            <a href="#" class="upvote btn">⬆</a>
+            <h2><a href="{{pathFor 'postPage'}}">{{title}}</a><span class="badge pull-right">Votes: {{votes}}</span></h2>
+            <p>
+                submitted by Jason,
+                <a href="{{pathFor 'postPage'}}">{{commentsCount}} Comments</a>
+            </p>
+            <div class="pull-right">
+                <a href="{{pathFor 'postPage'}}" class="btn btn-primary glyphicon glyphicon-tree-deciduous">Discuss</a>
+                <button type="button" class="upvote btn btn-success glyphicon glyphicon-ok"> Vote</button>
+            </div>
+            <p>Idea: {{message}}</p>
+
+
+        </div>
+    </div>
+</template>
+
