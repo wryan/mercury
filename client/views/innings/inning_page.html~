@@ -1,0 +1,27 @@
+<template name="inningPage">
+    <h1>Inning Information</h1>
+    <div class="inningInformation">
+        Inning {{inningNumber}}/{{totalInnings}}
+	<br>
+        {{#if theme}}
+		Theme: {{theme}}
+	{{else}}
+	<form class="main"> 
+	        Theme: <input name="theme" type="text" value="" placeholder="Create theme"/>
+	        <input type="submit" value="Submit" class="btn btn-primary"/>
+	</form>
+	{{/if}}
+	<br>
+	Status: {{status}}
+	<br>
+	Days Remaining: {{inningDaysRemaining}}
+    </div>
+
+    <div class="ideaInformation">
+	{{#if isStatusIdeaSubmit}}	
+		{{> ideaSubmit}}
+	{{/if}}
+
+
+    </div>
+</template>

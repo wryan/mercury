@@ -1,0 +1,12 @@
+Template.inningsList.helpers({
+    activeInnings: function() {
+	return Innings.find({status: { $in ["ideaSubmission", "vote", "new"]}});
+	
+//        return Games.find({$and: [{startDate: {$lte: new Date()}, endDate: {$gte: new Date()}}]},{sort:{submitted: -1}, limit:5})
+    },
+
+     pastInnings: function() {
+	return Innings.find({status: "past"});
+//       return Games.find({endDate: {$lt: new Date()}},{sort:{submitted: -1}, limit:5})
+    }
+});

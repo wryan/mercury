@@ -1,0 +1,21 @@
+<template name="gamesList">
+
+    <div class="jumbotron">
+        <h1>The Innings</h1>
+    </div>
+   
+    <h1>Active Inning</h1>
+    <div class="activeInnings">
+        {{#each activeInnings}}
+            {{> inningItem}}
+        {{/each}}
+    </div>
+
+     <h1>Past Innings</h1>
+    <div class="pastInnings">
+        {{#each pastInnings}}
+            {{> inningItem}}
+        {{/each}}
+    </div>
+
+</template>
