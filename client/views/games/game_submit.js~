@@ -12,36 +12,68 @@ Template.gameSubmit.events({
           //  firstTheme: $(e.target).find('[name=firstTheme]').val(),
 	    message: $(e.target).find('[name=message]').val(),
             submitted: new Date(),
-	    gameOwner: Meteor.user().username
+	    gameOwner: Meteor.user().username,
+	    status: "new",
+	   // innings: []
 
         };
-
-        game.endDate.setDate(game.startDate.getDate() + ((game.daysToSubmit+game.daysToVote)*game.numberInnings));  //Set endDate
-
-//	alert("Days to submit: " + game.daysToSubmit + "\nDays to vote: " + game.daysToVote + "\nNumber of Innings: " + game.numberInnings + "\nSubmit + Vote: " + (game.daysToSubmit+game.daysToVote));
-//        alert("Submitted. Days to play: " + (game.daysToSubmit+game.daysToVote)*game.numberInnings);
-
-//	alert(Meteor.user().username);
-
-	game._id =  Games.insert(game);
 	
+	//Set game endDate based on start date, days to submit, days to vote, and number of innings
+        game.endDate.setDate(game.startDate.getDate() + ((game.daysToSubmit+game.daysToVote)*game.numberInnings));  
+
+	var game_id =  Games.insert(game);
+
+	//initialize innings for this game
+	initializeInningsForGame(game_id);
+
+	//Games.update({_id: game_id}, { $set: {innings: inningIdList}});
+	Router.go('gamesList');
+
+	}
+});
+
+function initializeInningsForGame(game_id){
+
+	//pull copy of game from Games collection
+	var game = Games.findOne({_id: game_id});
+
+	//initialize inningAttributes
 	var inningAttributes = {
-		gameId: game._id,
+		gameId: game_id,
 		inningNumber: 0,
-		theme: ""
+		daysToSubmit: game.daysToSubmit,
+		daysToVote: game.daysToVote,
+		theme: "TBD",
+		startDate: new Date(game.startDate),
+		endDate: new Date(game.startDate),
+		voteDate: new Date(game.startDate),
+		status: "inactive",
+		owner: "TBD"
 	};
 
+
 	//Create innings for game
+	var inningIdList = [];	//store inning IDs to add to this Games collection	
 	for (var i = 0; i < game.numberInnings; i++) {
+		var inningId;
 		inningAttributes.inningNumber = i+1;
-		Meteor.call('createInning', inningAttributes, function(error, inningId) {
-			if (error) {
-				throwError(error.reason);
-			} else {
-//			alert("Created inning #: " + i);
-			}
-		});
+		//set inning start date		
+		inningAttributes.startDate = new Date(game.startDate);
+		inningAttributes.startDate.setDate(inningAttributes.startDate.getDate() + ((game.daysToSubmit+game.daysToVote)*(inningAttributes.inningNumber-1)));
+		
+		//set inning end date		
+		inningAttributes.endDate = new Date(game.startDate);
+		inningAttributes.endDate.setDate(inningAttributes.endDate.getDate() + (game.daysToSubmit+game.daysToVote)*inningAttributes.inningNumber);
+
+		//set date voting starts
+		
+
+		Meteor.call('createInning', inningAttributes);
 	}
+
+
+	//add inning IDs to this Games collection
+	//Games.update({_id: game_id}, { $set: {innings: inningIdList}});
 
 	//Set theme for first inning	
 	//inningAttributes.inningNumber = 1;
@@ -49,10 +81,10 @@ Template.gameSubmit.events({
 	//Meteor.call('setInningTheme', inningAttributes, function(error, inningId) {
 	
 
-        Router.go('gamesList');
+    
 
-    }
-});
+}
+
 
 
 

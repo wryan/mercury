@@ -2,17 +2,26 @@ Innings = new Meteor.Collection('innings');
 
 Meteor.methods({
 	createInning: function(inningAttributes) {
-//		var game = Games.findOne(inningAttributes);
-	
 		var inning = {
 			gameId: inningAttributes.gameId,
 			inningNumber: inningAttributes.inningNumber,
-			theme: ""
+			theme: "",
+			startDate: inningAttributes.startDate,
+			endDate: inningAttributes.endDate,
+			voteDate: inningAttributes.voteDate,
+			status: "new",
+			lastUpdateDate: new Date()			
 		}	
+	
 
-	return Innings.insert(inning);
+	var inningId = Innings.insert(inning);
+	return inningId;
+	},
+
+	updateTheme: function(newTheme){
+		alert("in updateTheme function: " + newTheme);
+		this.theme=newTheme;
 	}
-
 
 //	setInningTheme: function(inningAttributes) {
 //		var inning = Innings.findOne

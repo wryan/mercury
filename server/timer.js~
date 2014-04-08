@@ -15,8 +15,8 @@ function gameStartStatus()
 //call function to update status of each active game identified to past
 	var activeToPastGames = Games.find({$and: [ {$or: [{status: "active", status: "new"}], startDate: {$lte: currentDate}, endDate: {$lte: currentDate}}] } ); 
 
-	activeToPastGames.forEach(updateGameStatus,"past"); 
-//	activeToPastGames.forEach(updateStatusToPast); 
+//	activeToPastGames.forEach(updateGameStatus,"past"); 
+	activeToPastGames.forEach(updateStatusToPast); 
 
 }
 

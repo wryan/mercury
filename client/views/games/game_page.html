@@ -1,6 +1,20 @@
 <template name="gamePage">
     {{> gameItem}}
 
+    <h1>Active Inning</h1>
+    <div class="activeInnings">
+        {{#each activeInnings}}
+            {{> inningItem}}
+        {{/each}}
+    </div>
+
+    <h1>Past Innings</h1>
+    <div class="pastInnings">
+        {{#each pastInnings}}
+            {{> inningItem}}
+        {{/each}}
+    </div>
+
     {{> commentSubmit}}
     <br>
     <div class="container-fluid">
